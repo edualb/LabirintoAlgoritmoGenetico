@@ -12,8 +12,10 @@ import view.View;
 public class Main {
 	
 	private static Scanner scanner;
+	private static Cromossomo melhorCromossomo = null;
 	static int populacao;
 	static int geracao;
+	static int melhorAvalicao;
 
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
@@ -49,16 +51,24 @@ public class Main {
 						Cromossomo cromossomo = new Cromossomo(view);
 						view.setCromossomo(cromossomo);
 						view.calculaCromossomo();
-						
+						melhorAvalicao = cromossomo.getAvaliacao();
 						geracaoLista.add(cromossomo);
 					}
 
 					for (Cromossomo cromossomo : geracaoLista) {
-						System.out.println("Cromossomo: " + cromossomo.getCromossomo());
-						System.out.println("avaliacao: " + cromossomo.getAvaliacao());
-						System.out.println("caminho: " + cromossomo.getCaminho());
-						System.out.println("");
+						if (cromossomo.getAvaliacao() < melhorAvalicao) {
+							melhorCromossomo = cromossomo;
+						}
 					}
+					
+					view.setCromossomo(melhorCromossomo);
+					view.calculaCromossomo();
+					
+					System.out.println("******************** GERAÇÃO " + i + " ********************");
+					System.out.println(" Cromossomo: " + melhorCromossomo.getCromossomo());
+					System.out.println(" avaliacao: " + melhorCromossomo.getAvaliacao());
+					System.out.println("***********************************************************");
+					System.out.println("");
 				}
 				
 				view.setVisible(true);

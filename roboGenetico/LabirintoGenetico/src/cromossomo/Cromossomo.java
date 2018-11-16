@@ -60,28 +60,28 @@ public class Cromossomo {
 	}
 
 	public String montaGene(int fimX, int fimY) {
-		int geraX = getRandomNumberInRange(1, fimX);
-		int geraY = getRandomNumberInRange(1, fimY);
+		int geraX = getRandomNumberInRange(1, fimX - 1);
+		int geraY = getRandomNumberInRange(1, fimY - 1);
 		
 		do {
-			geraX = getRandomNumberInRange(1, fimX);
-			geraY = getRandomNumberInRange(1, fimY);
+			geraX = getRandomNumberInRange(1, fimX - 1);
+			geraY = getRandomNumberInRange(1, fimY - 1);
 			
 			if (labirinto[geraY][geraX] == 9) {
-				geraX = getRandomNumberInRange(1, fimX);
-				geraY = getRandomNumberInRange(1, fimY);
+				geraX = getRandomNumberInRange(1, fimX - 1);
+				geraY = getRandomNumberInRange(1, fimY - 1);
 			} else if (labirinto[geraY][geraX] == 1) {
-				geraX = getRandomNumberInRange(1, fimX);
-				geraY = getRandomNumberInRange(1, fimY);
+				geraX = getRandomNumberInRange(1, fimX - 1);
+				geraY = getRandomNumberInRange(1, fimY - 1);
 			} else if (labirinto[geraY][geraX] == 5) {
-				geraX = getRandomNumberInRange(1, fimX);
-				geraY = getRandomNumberInRange(1, fimY);
+				geraX = getRandomNumberInRange(1, fimX - 1);
+				geraY = getRandomNumberInRange(1, fimY - 1);
 			} else if (geraX == 1) {
-				geraX = getRandomNumberInRange(1, fimX);
-				geraY = getRandomNumberInRange(1, fimY);
+				geraX = getRandomNumberInRange(1, fimX - 1);
+				geraY = getRandomNumberInRange(1, fimY - 1);
 			} else if (geraY == 1) {
-				geraX = getRandomNumberInRange(1, fimX);
-				geraY = getRandomNumberInRange(1, fimY);
+				geraX = getRandomNumberInRange(1, fimX - 1);
+				geraY = getRandomNumberInRange(1, fimY - 1);
 			}
 		} while (geraY < this.atualY);
 		
