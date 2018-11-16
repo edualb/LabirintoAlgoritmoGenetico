@@ -1,0 +1,37 @@
+import java.util.Scanner;
+
+import javax.swing.SwingUtilities;
+
+import view.View;
+
+
+public class Main {
+	
+	private static Scanner scanner;
+	static int populacao;
+
+	public static void main(String[] args) {
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				scanner = new Scanner(System.in);
+				
+				System.out.println("*****************Algoritmo Genético*****************");
+				System.out.println("** Tipo de CrossOver: De ponto;                    **");
+				System.out.println("** Tipo de mutação: Clássica;                      **");
+				System.out.println("** Aptidão: Avaliação;                             **");
+				System.out.println("** Seleção: - Inicialização aleaória               **");
+				System.out.println("**          - Elitismo                             **");
+				System.out.println("**          - Torneio                              **");
+				System.out.println("*****************************************************");
+				
+				System.out.println("Informe o número da população:");
+				populacao = scanner.nextInt();
+				
+				View view = new View();
+				view.setVisible(true);
+			}
+		});
+	}
+	
+}

@@ -1,0 +1,28 @@
+import java.util.Scanner;
+
+import javax.swing.SwingUtilities;
+
+import view.View;
+
+
+public class Main {
+	
+	private static Scanner scanner;
+	static int respostax = 0;
+	static int respostay = 0;
+
+	public static void main(String[] args) {
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {			
+				System.out.println("Inserira as coordenadas da saída x e y: ");
+				respostax = scanner.nextInt();
+				respostay = scanner.nextInt();
+				
+				View view = new View(respostax, respostay);
+				view.setVisible(true);
+			}
+		});
+	}
+	
+}

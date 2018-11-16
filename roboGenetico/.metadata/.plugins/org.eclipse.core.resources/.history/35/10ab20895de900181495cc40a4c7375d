@@ -1,0 +1,131 @@
+package acharNo;
+
+import java.util.List;
+
+public class achaNo {
+	
+	static int passosDados;
+	
+	public static int getPassosDados() {
+		return passosDados;
+	}
+
+	public static boolean procuraCaminho(int[][] labirinto, int x, int y, int fimX, int fimY, List<Integer> caminho) {
+		try {
+			
+			if (labirinto[y][x] == 9) {
+				passosDados++;
+				caminho.add(x);
+				caminho.add(y);
+				return true;
+			}
+			
+			if (labirinto[y][x] == 5) {
+				//labirinto[y][x] = 0;
+				for (int  linha = 0 ; linha < labirinto.length ; linha++) {
+					for (int coluna = 0 ; coluna < labirinto[0].length ; coluna++) {
+						if (labirinto[linha][coluna] == 2 || labirinto[linha][coluna] == 5) {
+							labirinto[linha][coluna] = 0;
+						}
+					}
+				}
+				passosDados++;
+				caminho.add(x);
+				caminho.add(y);
+				return true;
+			}
+			
+			
+			if (labirinto[y][x] == 0) {
+				labirinto[y][x] = 2;
+				
+				
+				if (x <= fimX && y <= fimY) {
+					int dx = 1;
+		            int dy = 0;
+		            if (procuraCaminho(labirinto, x + dx, y + dy, fimX, fimY, caminho) && x <= fimX) {
+		            	passosDados++;
+		            	caminho.add(x);
+		            	caminho.add(y);
+		                return true;
+		            } 
+		            
+		            dx = 0;
+		            dy = 1;
+		            if (procuraCaminho(labirinto, x + dx, y + dy, fimX, fimY, caminho) && y <= fimY) {
+		            	passosDados++;
+		            	caminho.add(x);
+		            	caminho.add(y);
+		                return true;
+		            }
+				}
+				
+				if (x >= fimX && y <= fimY) {
+					int dx = -1;
+		            int dy = 0;
+		            if (procuraCaminho(labirinto, x + dx, y + dy, fimX, fimY, caminho) && x >= fimX) {
+		            	passosDados++;
+		            	caminho.add(x);
+		            	caminho.add(y);
+		                return true;
+		            } 
+		            
+		            dx = 0;
+		            dy = 1;
+		            if (procuraCaminho(labirinto, x + dx, y + dy, fimX, fimY, caminho) && y <= fimY) {
+		            	passosDados++;
+		            	caminho.add(x);
+		            	caminho.add(y);
+		                return true;
+		            }
+				}
+				
+				if (x <= fimX && y >= fimY) {
+					int dx = 1;
+		            int dy = 0;
+		            if (procuraCaminho(labirinto, x + dx, y + dy, fimX, fimY, caminho) && x <= fimX) {
+		            	passosDados++;
+		            	caminho.add(x);
+		            	caminho.add(y);
+		                return true;
+		            } 
+		            
+		            dx = 0;
+		            dy = -1;
+		            if (procuraCaminho(labirinto, x + dx, y + dy, fimX, fimY, caminho) && y >= fimY) {
+		            	passosDados++;
+		            	caminho.add(x);
+		            	caminho.add(y);
+		                return true;
+		            }
+				}
+				
+				if (x >= fimX && y >= fimY) {
+					int dx = -1;
+		            int dy = 0;
+		            if (procuraCaminho(labirinto, x + dx, y + dy, fimX, fimY, caminho) && x >= fimX) {
+		            	passosDados++;
+		            	caminho.add(x);
+		            	caminho.add(y);
+		                return true;
+		            } 
+		            
+		            dx = 0;
+		            dy = -1;
+		            if (procuraCaminho(labirinto, x + dx, y + dy, fimX, fimY, caminho) && y >= fimY) {
+		            	passosDados++;
+		            	caminho.add(x);
+		            	caminho.add(y);
+		                return true;
+		            }
+				}
+	            
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+}

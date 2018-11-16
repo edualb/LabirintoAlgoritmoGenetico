@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+import javax.swing.SwingUtilities;
+
+import view.View;
+
+
+public class Main {
+	
+	private static Scanner scanner;
+	static int respostax = 0;
+	static int respostay = 0;
+
+	public static void main(String[] args) {
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {					
+				View view = new View();
+				view.setVisible(true);
+			}
+		});
+	}
+	
+}

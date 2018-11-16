@@ -1,0 +1,19 @@
+import javax.swing.SwingUtilities;
+
+import view.View;
+
+
+public class Main {
+
+	public static void main(String[] args) {
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				View view = new View();
+				view.setVisible(true);
+				System.out.println(view.getPassosDados());
+			}
+		});
+	}
+	
+}

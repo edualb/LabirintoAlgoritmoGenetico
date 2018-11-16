@@ -1,0 +1,84 @@
+package cromossomo;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import view.View;
+
+public class Cromossomo {
+	
+	int [][] labirinto;
+	List<String> cromossomo = new ArrayList<String>();
+	
+	public Cromossomo() {
+		
+	}
+	
+	public Cromossomo(View view) {
+		this.labirinto = view.getLabirinto();
+		int atualY = view.getInicioY();
+		
+		String primeiroGene = completeToLeft(String.valueOf(view.getInicioX()), '0', 3) + completeToLeft(String.valueOf(view.getInicioY()), '0', 3);
+		cromossomo.add(primeiroGene);
+		
+		for (int i = 1 ; i < 5 ; i++) {
+			cromossomo.add(montaGene(view.getFimX(), view.getFimX(), atualY));
+		}
+		
+		String ultimoGene = completeToLeft(String.valueOf(view.getFimX()), '0', 3) + completeToLeft(String.valueOf(view.getFimY()), '0', 3);
+		cromossomo.add(ultimoGene);
+		
+		view.setLabirinto(this.labirinto);
+	}
+	
+	public int[][] getLabirinto() {
+		return labirinto;
+	}
+
+	public List<String> getCromossomo() {
+		return cromossomo;
+	}
+
+	public String montaGene(int fimX, int fimY, int atualY) {
+		Integer geraX = getRandomNumberInRange(1, fimX);
+		Integer geraY = getRandomNumberInRange(1, fimY);
+		
+		while (labirinto[geraY][geraX] != 9 
+			   && labirinto[geraY][geraX] != 1 
+			   && labirinto[geraY][geraX] != 5 
+			   && geraX != 1 && geraY != 1
+			   && geraY >= atualY) {
+			labirinto[geraY][geraX] = 5;
+		}
+		
+		atualY = geraY;
+		
+		String x = completeToLeft(geraX.toString(), '0', 3);
+		String y = completeToLeft(geraY.toString(), '0', 3);
+
+		return x + y;
+	}
+	
+	
+	//http://www.guj.com.br/t/inserir-zeros-a-esquerda/70374
+	public static String completeToLeft(String value, char c, int size) {
+		String result = value;
+		while (result.length() < size) {
+			result = c + result;
+		}
+		return result;
+	}
+	
+	//https://www.mkyong.com/java/java-generate-random-integers-in-a-range/
+	private static int getRandomNumberInRange(int min, int max) {
+
+		if (min >= max) {
+			throw new IllegalArgumentException("max must be greater than min");
+		}
+
+		Random r = new Random();
+		return r.nextInt((max - min) + 1) + min;
+	}
+	
+}
